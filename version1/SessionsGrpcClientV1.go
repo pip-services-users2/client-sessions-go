@@ -52,7 +52,7 @@ func (c *SessionGrpcClientV1) GetSessions(ctx context.Context, correlationId str
 }
 
 func (c *SessionGrpcClientV1) GetSessionById(ctx context.Context, correlationId string, id string) (result *SessionV1, err error) {
-	timing := c.Instrument(ctx, correlationId, "sessions_v1.get_sessions")
+	timing := c.Instrument(ctx, correlationId, "sessions_v1.get_session_by_id")
 	defer timing.EndTiming(ctx, err)
 
 	req := &protos.SessionIdRequest{
@@ -79,6 +79,9 @@ func (c *SessionGrpcClientV1) GetSessionById(ctx context.Context, correlationId 
 func (c *SessionGrpcClientV1) OpenSession(ctx context.Context, correlationId string, userId string,
 	userName string, address string, client string, user interface{},
 	data interface{}) (result *SessionV1, err error) {
+	timing := c.Instrument(ctx, correlationId, "sessions_v1.open_session")
+	defer timing.EndTiming(ctx, err)
+
 	req := &protos.SessionOpenRequest{
 		CorrelationId: correlationId,
 		UserId:        userId,
@@ -107,6 +110,9 @@ func (c *SessionGrpcClientV1) OpenSession(ctx context.Context, correlationId str
 
 func (c *SessionGrpcClientV1) StoreSessionData(ctx context.Context, correlationId string,
 	sessionId string, data interface{}) (result *SessionV1, err error) {
+	timing := c.Instrument(ctx, correlationId, "sessions_v1.store_session_data")
+	defer timing.EndTiming(ctx, err)
+
 	req := &protos.SessionStoreDataRequest{
 		CorrelationId: correlationId,
 		SessionId:     sessionId,
@@ -131,6 +137,9 @@ func (c *SessionGrpcClientV1) StoreSessionData(ctx context.Context, correlationI
 
 func (c *SessionGrpcClientV1) UpdateSessionUser(ctx context.Context, correlationId string,
 	sessionId string, user interface{}) (result *SessionV1, err error) {
+	timing := c.Instrument(ctx, correlationId, "sessions_v1.update_session_user")
+	defer timing.EndTiming(ctx, err)
+
 	req := &protos.SessionUpdateUserRequest{
 		CorrelationId: correlationId,
 		SessionId:     sessionId,
@@ -155,6 +164,9 @@ func (c *SessionGrpcClientV1) UpdateSessionUser(ctx context.Context, correlation
 
 func (c *SessionGrpcClientV1) CloseSession(ctx context.Context, correlationId string,
 	sessionId string) (result *SessionV1, err error) {
+	timing := c.Instrument(ctx, correlationId, "sessions_v1.close_session")
+	defer timing.EndTiming(ctx, err)
+
 	req := &protos.SessionIdRequest{
 		CorrelationId: correlationId,
 		SessionId:     sessionId,
@@ -178,6 +190,9 @@ func (c *SessionGrpcClientV1) CloseSession(ctx context.Context, correlationId st
 
 func (c *SessionGrpcClientV1) DeleteSessionById(ctx context.Context, correlationId string,
 	sessionId string) (result *SessionV1, err error) {
+	timing := c.Instrument(ctx, correlationId, "sessions_v1.delete_session_by_id")
+	defer timing.EndTiming(ctx, err)
+
 	req := &protos.SessionIdRequest{
 		CorrelationId: correlationId,
 		SessionId:     sessionId,
