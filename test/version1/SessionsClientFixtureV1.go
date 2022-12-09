@@ -20,7 +20,7 @@ func NewSessionsClientFixtureV1(client version1.ISessionsClientV1) *SessionsClie
 }
 
 func (c *SessionsClientFixtureV1) clear() {
-	page, _ := c.Client.GetSessions(context.Background(), "", *data.NewEmptyFilterParams(), *data.NewEmptyPagingParams())
+	page, _ := c.Client.GetSessions(context.Background(), "", data.NewEmptyFilterParams(), data.NewEmptyPagingParams())
 
 	for _, session := range page.Data {
 		c.Client.DeleteSessionById(context.Background(), "", session.Id)
@@ -64,7 +64,7 @@ func (c *SessionsClientFixtureV1) TestOpenSession(t *testing.T) {
 
 	// Get open sessions
 	page, err1 := c.Client.GetSessions(context.Background(), "",
-		*data.NewFilterParamsFromTuples("user_id", "1", "active", true), *data.NewEmptyPagingParams())
+		data.NewFilterParamsFromTuples("user_id", "1", "active", true), data.NewEmptyPagingParams())
 	assert.Nil(t, err1)
 
 	assert.NotNil(t, page)

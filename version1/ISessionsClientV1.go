@@ -7,8 +7,8 @@ import (
 )
 
 type ISessionsClientV1 interface {
-	GetSessions(ctx context.Context, correlationId string, filter data.FilterParams,
-		paging data.PagingParams) (result data.DataPage[*SessionV1], err error)
+	GetSessions(ctx context.Context, correlationId string, filter *data.FilterParams,
+		paging *data.PagingParams) (result data.DataPage[*SessionV1], err error)
 
 	GetSessionById(ctx context.Context, correlationId string, id string) (result *SessionV1, err error)
 

@@ -18,8 +18,8 @@ func NewSessionsHttpCommandableClientV1() *SessionsHttpCommandableClientV1 {
 	return c
 }
 
-func (c *SessionsHttpCommandableClientV1) GetSessions(ctx context.Context, correlationId string, filter cdata.FilterParams,
-	paging cdata.PagingParams) (result cdata.DataPage[*SessionV1], err error) {
+func (c *SessionsHttpCommandableClientV1) GetSessions(ctx context.Context, correlationId string, filter *cdata.FilterParams,
+	paging *cdata.PagingParams) (result cdata.DataPage[*SessionV1], err error) {
 
 	params := cdata.NewAnyValueMapFromTuples(
 		"filter", filter,

@@ -18,7 +18,7 @@ func NewSessionsMemoryClientV1() *SessionsMemoryClientV1 {
 	return &c
 }
 
-func (c *SessionsMemoryClientV1) GetSessions(ctx context.Context, correlationId string, filter cdata.FilterParams, paging cdata.PagingParams) (page cdata.DataPage[*SessionV1], err error) {
+func (c *SessionsMemoryClientV1) GetSessions(ctx context.Context, correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (page cdata.DataPage[*SessionV1], err error) {
 
 	items := make([]*SessionV1, 0)
 	for _, v := range c.sessions {
