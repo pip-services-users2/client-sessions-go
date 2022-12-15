@@ -1,6 +1,10 @@
 {
   "name": "client-sessions-go",
-  "registry": "pipdevs/client-sessions-go",
+  "type": "client",
+  "language": "go",
   "version": "1.0.0",
-  "build": null
+  "build": 0,
+  "registry": "pipdevs",
+  "artifacts": [
+  ]
 }
