@@ -19,13 +19,13 @@ func NewSessionsClientFactory() *SessionsClientFactory {
 	// directClientDescriptor := cref.NewDescriptor("service-sessions", "client", "direct", "*", "1.0")
 	cmdHttpClientDescriptor := cref.NewDescriptor("service-sessions", "client", "commandable-http", "*", "1.0")
 	grpcClientDescriptor := cref.NewDescriptor("service-sessions", "client", "grpc", "*", "1.0")
-	memoryClientDescriptor := cref.NewDescriptor("service-sessions", "client", "memory", "*", "1.0")
+	mockClientDescriptor := cref.NewDescriptor("service-sessions", "client", "mock", "*", "1.0")
 
 	// c.RegisterType(nullClientDescriptor, clients1.NewSessionsNullClientV1)
 	// c.RegisterType(directClientDescriptor, clients1.NewSessionsDirectClientV1)
 	c.RegisterType(cmdHttpClientDescriptor, clients1.NewSessionsHttpCommandableClientV1)
 	c.RegisterType(grpcClientDescriptor, clients1.NewSessionGrpcClientV1)
-	c.RegisterType(memoryClientDescriptor, clients1.NewSessionsMemoryClientV1)
+	c.RegisterType(mockClientDescriptor, clients1.NewSessionsMockClientV1)
 
 	return c
 }

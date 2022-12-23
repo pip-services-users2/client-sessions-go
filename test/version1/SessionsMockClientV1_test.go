@@ -6,29 +6,29 @@ import (
 	"github.com/pip-services-users2/client-sessions-go/version1"
 )
 
-type sessionsMemoryClientV1Test struct {
-	client  *version1.SessionsMemoryClientV1
+type sessionsMockClientV1Test struct {
+	client  *version1.SessionsMockClientV1
 	fixture *SessionsClientFixtureV1
 }
 
-func newSessionsMemoryClientV1Test() *sessionsMemoryClientV1Test {
-	return &sessionsMemoryClientV1Test{}
+func newSessionsMockClientV1Test() *sessionsMockClientV1Test {
+	return &sessionsMockClientV1Test{}
 }
 
-func (c *sessionsMemoryClientV1Test) setup(t *testing.T) *SessionsClientFixtureV1 {
+func (c *sessionsMockClientV1Test) setup(t *testing.T) *SessionsClientFixtureV1 {
 
-	c.client = version1.NewSessionsMemoryClientV1()
+	c.client = version1.NewSessionsMockClientV1()
 	c.fixture = NewSessionsClientFixtureV1(c.client)
 	return c.fixture
 }
 
-func (c *sessionsMemoryClientV1Test) teardown(t *testing.T) {
+func (c *sessionsMockClientV1Test) teardown(t *testing.T) {
 	c.client = nil
 	c.fixture = nil
 }
 
 func TestMemoryOpenSession(t *testing.T) {
-	c := newSessionsMemoryClientV1Test()
+	c := newSessionsMockClientV1Test()
 	fixture := c.setup(t)
 	defer c.teardown(t)
 
@@ -36,7 +36,7 @@ func TestMemoryOpenSession(t *testing.T) {
 }
 
 func TestMemoryCloseSession(t *testing.T) {
-	c := newSessionsMemoryClientV1Test()
+	c := newSessionsMockClientV1Test()
 	fixture := c.setup(t)
 	defer c.teardown(t)
 

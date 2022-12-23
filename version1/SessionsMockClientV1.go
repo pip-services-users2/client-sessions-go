@@ -6,19 +6,19 @@ import (
 	cdata "github.com/pip-services3-gox/pip-services3-commons-gox/data"
 )
 
-type SessionsMemoryClientV1 struct {
+type SessionsMockClientV1 struct {
 	sessions []*SessionV1
 }
 
-func NewSessionsMemoryClientV1() *SessionsMemoryClientV1 {
+func NewSessionsMockClientV1() *SessionsMockClientV1 {
 
-	c := SessionsMemoryClientV1{
+	c := SessionsMockClientV1{
 		sessions: make([]*SessionV1, 0),
 	}
 	return &c
 }
 
-func (c *SessionsMemoryClientV1) GetSessions(ctx context.Context, correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (page cdata.DataPage[*SessionV1], err error) {
+func (c *SessionsMockClientV1) GetSessions(ctx context.Context, correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (page cdata.DataPage[*SessionV1], err error) {
 
 	items := make([]*SessionV1, 0)
 	for _, v := range c.sessions {
@@ -28,7 +28,7 @@ func (c *SessionsMemoryClientV1) GetSessions(ctx context.Context, correlationId 
 	return *cdata.NewDataPage(items, len(c.sessions)), nil
 }
 
-func (c *SessionsMemoryClientV1) GetSessionById(ctx context.Context, correlationId string, sessionId string) (session *SessionV1, err error) {
+func (c *SessionsMockClientV1) GetSessionById(ctx context.Context, correlationId string, sessionId string) (session *SessionV1, err error) {
 	for _, d := range c.sessions {
 		if d.Id == sessionId {
 			session = d
@@ -38,7 +38,7 @@ func (c *SessionsMemoryClientV1) GetSessionById(ctx context.Context, correlation
 	return session, nil
 }
 
-func (c *SessionsMemoryClientV1) OpenSession(ctx context.Context, correlationId string, userId string, userName string,
+func (c *SessionsMockClientV1) OpenSession(ctx context.Context, correlationId string, userId string, userName string,
 	address string, client string, user interface{}, data interface{}) (session *SessionV1, err error) {
 
 	id := cdata.IdGenerator.NextLong()
@@ -52,7 +52,7 @@ func (c *SessionsMemoryClientV1) OpenSession(ctx context.Context, correlationId 
 	return session, nil
 }
 
-func (c *SessionsMemoryClientV1) StoreSessionData(ctx context.Context, correlationId string, sessionId string, data interface{}) (session *SessionV1, err error) {
+func (c *SessionsMockClientV1) StoreSessionData(ctx context.Context, correlationId string, sessionId string, data interface{}) (session *SessionV1, err error) {
 
 	for i := range c.sessions {
 		if c.sessions[i].Id == sessionId {
@@ -65,7 +65,7 @@ func (c *SessionsMemoryClientV1) StoreSessionData(ctx context.Context, correlati
 	return session, nil
 }
 
-func (c *SessionsMemoryClientV1) UpdateSessionUser(ctx context.Context, correlationId string, sessionId string, user interface{}) (session *SessionV1, err error) {
+func (c *SessionsMockClientV1) UpdateSessionUser(ctx context.Context, correlationId string, sessionId string, user interface{}) (session *SessionV1, err error) {
 
 	for i := range c.sessions {
 		if c.sessions[i].Id == sessionId {
@@ -78,7 +78,7 @@ func (c *SessionsMemoryClientV1) UpdateSessionUser(ctx context.Context, correlat
 	return session, nil
 }
 
-func (c *SessionsMemoryClientV1) CloseSession(ctx context.Context, correlationId string, sessionId string) (session *SessionV1, err error) {
+func (c *SessionsMockClientV1) CloseSession(ctx context.Context, correlationId string, sessionId string) (session *SessionV1, err error) {
 
 	for i := range c.sessions {
 		if c.sessions[i].Id == sessionId {
@@ -91,7 +91,7 @@ func (c *SessionsMemoryClientV1) CloseSession(ctx context.Context, correlationId
 	return session, nil
 }
 
-func (c *SessionsMemoryClientV1) DeleteSessionById(ctx context.Context, correlationId string, sessionId string) (session *SessionV1, err error) {
+func (c *SessionsMockClientV1) DeleteSessionById(ctx context.Context, correlationId string, sessionId string) (session *SessionV1, err error) {
 
 	var index = -1
 	for i, v := range c.sessions {
