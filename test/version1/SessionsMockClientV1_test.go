@@ -27,7 +27,7 @@ func (c *sessionsMockClientV1Test) teardown(t *testing.T) {
 	c.fixture = nil
 }
 
-func TestMemoryOpenSession(t *testing.T) {
+func TestMockOpenSession(t *testing.T) {
 	c := newSessionsMockClientV1Test()
 	fixture := c.setup(t)
 	defer c.teardown(t)
@@ -35,7 +35,7 @@ func TestMemoryOpenSession(t *testing.T) {
 	fixture.TestOpenSession(t)
 }
 
-func TestMemoryCloseSession(t *testing.T) {
+func TestMockCloseSession(t *testing.T) {
 	c := newSessionsMockClientV1Test()
 	fixture := c.setup(t)
 	defer c.teardown(t)
