@@ -7,12 +7,12 @@ import (
 )
 
 type SessionsClientFactory struct {
-	cbuild.Factory
+	*cbuild.Factory
 }
 
 func NewSessionsClientFactory() *SessionsClientFactory {
 	c := &SessionsClientFactory{
-		Factory: *cbuild.NewFactory(),
+		Factory: cbuild.NewFactory(),
 	}
 
 	// nullClientDescriptor := cref.NewDescriptor("service-sessions", "client", "null", "*", "1.0")
