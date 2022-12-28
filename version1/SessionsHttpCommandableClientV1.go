@@ -31,7 +31,18 @@ func (c *SessionsHttpCommandableClientV1) GetSessions(ctx context.Context, corre
 		return *cdata.NewEmptyDataPage[*SessionV1](), err
 	}
 
-	return cclients.HandleHttpResponse[cdata.DataPage[*SessionV1]](res, correlationId)
+	page, err := cclients.HandleHttpResponse[cdata.DataPage[*SessionV1]](res, correlationId)
+	if err != nil {
+		return *cdata.NewEmptyDataPage[*SessionV1](), err
+	}
+
+	for i, session := range page.Data {
+		if user, ok := session.User.(map[string]any); ok {
+			page.Data[i].User = *cdata.NewAnyValueMap(user)
+		}
+	}
+
+	return page, nil
 }
 
 func (c *SessionsHttpCommandableClientV1) GetSessionById(ctx context.Context, correlationId string, id string) (result *SessionV1, err error) {
@@ -44,7 +55,16 @@ func (c *SessionsHttpCommandableClientV1) GetSessionById(ctx context.Context, co
 		return nil, err
 	}
 
-	return cclients.HandleHttpResponse[*SessionV1](res, correlationId)
+	session, err := cclients.HandleHttpResponse[*SessionV1](res, correlationId)
+	if err != nil {
+		return nil, err
+	}
+
+	if user, ok := session.User.(map[string]any); ok {
+		session.User = *cdata.NewAnyValueMap(user)
+	}
+
+	return session, nil
 }
 
 func (c *SessionsHttpCommandableClientV1) OpenSession(ctx context.Context, correlationId string, userId string, userName string,
@@ -65,7 +85,16 @@ func (c *SessionsHttpCommandableClientV1) OpenSession(ctx context.Context, corre
 		return nil, err
 	}
 
-	return cclients.HandleHttpResponse[*SessionV1](res, correlationId)
+	session, err := cclients.HandleHttpResponse[*SessionV1](res, correlationId)
+	if err != nil {
+		return nil, err
+	}
+
+	if user, ok := session.User.(map[string]any); ok {
+		session.User = *cdata.NewAnyValueMap(user)
+	}
+
+	return session, nil
 }
 
 func (c *SessionsHttpCommandableClientV1) StoreSessionData(ctx context.Context, correlationId string, sessionId string,
@@ -80,7 +109,16 @@ func (c *SessionsHttpCommandableClientV1) StoreSessionData(ctx context.Context, 
 		return nil, err
 	}
 
-	return cclients.HandleHttpResponse[*SessionV1](res, correlationId)
+	session, err := cclients.HandleHttpResponse[*SessionV1](res, correlationId)
+	if err != nil {
+		return nil, err
+	}
+
+	if user, ok := session.User.(map[string]any); ok {
+		session.User = *cdata.NewAnyValueMap(user)
+	}
+
+	return session, nil
 }
 
 func (c *SessionsHttpCommandableClientV1) UpdateSessionUser(ctx context.Context, correlationId string, sessionId string,
@@ -95,7 +133,16 @@ func (c *SessionsHttpCommandableClientV1) UpdateSessionUser(ctx context.Context,
 		return nil, err
 	}
 
-	return cclients.HandleHttpResponse[*SessionV1](res, correlationId)
+	session, err := cclients.HandleHttpResponse[*SessionV1](res, correlationId)
+	if err != nil {
+		return nil, err
+	}
+
+	if user, ok := session.User.(map[string]any); ok {
+		session.User = *cdata.NewAnyValueMap(user)
+	}
+
+	return session, nil
 }
 
 func (c *SessionsHttpCommandableClientV1) CloseSession(ctx context.Context, correlationId string, sessionId string) (result *SessionV1, err error) {
@@ -108,7 +155,16 @@ func (c *SessionsHttpCommandableClientV1) CloseSession(ctx context.Context, corr
 		return nil, err
 	}
 
-	return cclients.HandleHttpResponse[*SessionV1](res, correlationId)
+	session, err := cclients.HandleHttpResponse[*SessionV1](res, correlationId)
+	if err != nil {
+		return nil, err
+	}
+
+	if user, ok := session.User.(map[string]any); ok {
+		session.User = *cdata.NewAnyValueMap(user)
+	}
+
+	return session, nil
 }
 
 func (c *SessionsHttpCommandableClientV1) DeleteSessionById(ctx context.Context, correlationId string, sessionId string) (result *SessionV1, err error) {
@@ -121,5 +177,14 @@ func (c *SessionsHttpCommandableClientV1) DeleteSessionById(ctx context.Context,
 		return nil, err
 	}
 
-	return cclients.HandleHttpResponse[*SessionV1](res, correlationId)
+	session, err := cclients.HandleHttpResponse[*SessionV1](res, correlationId)
+	if err != nil {
+		return nil, err
+	}
+
+	if user, ok := session.User.(map[string]any); ok {
+		session.User = *cdata.NewAnyValueMap(user)
+	}
+
+	return session, nil
 }

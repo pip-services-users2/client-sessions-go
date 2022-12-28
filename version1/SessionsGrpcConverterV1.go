@@ -133,6 +133,10 @@ func toSession(obj *protos.Session) *SessionV1 {
 		Data:        fromJson(obj.Data),
 	}
 
+	if user, ok := session.User.(map[string]any); ok {
+		session.User = *data.NewAnyValueMap(user)
+	}
+
 	return session
 }
 
