@@ -60,8 +60,10 @@ func (c *SessionsHttpCommandableClientV1) GetSessionById(ctx context.Context, co
 		return nil, err
 	}
 
-	if user, ok := session.User.(map[string]any); ok {
-		session.User = *cdata.NewAnyValueMap(user)
+	if session != nil {
+		if user, ok := session.User.(map[string]any); ok {
+			session.User = *cdata.NewAnyValueMap(user)
+		}
 	}
 
 	return session, nil
@@ -90,8 +92,10 @@ func (c *SessionsHttpCommandableClientV1) OpenSession(ctx context.Context, corre
 		return nil, err
 	}
 
-	if user, ok := session.User.(map[string]any); ok {
-		session.User = *cdata.NewAnyValueMap(user)
+	if session != nil {
+		if user, ok := session.User.(map[string]any); ok {
+			session.User = *cdata.NewAnyValueMap(user)
+		}
 	}
 
 	return session, nil
@@ -114,8 +118,10 @@ func (c *SessionsHttpCommandableClientV1) StoreSessionData(ctx context.Context, 
 		return nil, err
 	}
 
-	if user, ok := session.User.(map[string]any); ok {
-		session.User = *cdata.NewAnyValueMap(user)
+	if session != nil {
+		if user, ok := session.User.(map[string]any); ok {
+			session.User = *cdata.NewAnyValueMap(user)
+		}
 	}
 
 	return session, nil
@@ -138,8 +144,10 @@ func (c *SessionsHttpCommandableClientV1) UpdateSessionUser(ctx context.Context,
 		return nil, err
 	}
 
-	if user, ok := session.User.(map[string]any); ok {
-		session.User = *cdata.NewAnyValueMap(user)
+	if session != nil {
+		if user, ok := session.User.(map[string]any); ok {
+			session.User = *cdata.NewAnyValueMap(user)
+		}
 	}
 
 	return session, nil
@@ -160,8 +168,10 @@ func (c *SessionsHttpCommandableClientV1) CloseSession(ctx context.Context, corr
 		return nil, err
 	}
 
-	if user, ok := session.User.(map[string]any); ok {
-		session.User = *cdata.NewAnyValueMap(user)
+	if session != nil {
+		if user, ok := session.User.(map[string]any); ok {
+			session.User = *cdata.NewAnyValueMap(user)
+		}
 	}
 
 	return session, nil
@@ -182,8 +192,10 @@ func (c *SessionsHttpCommandableClientV1) DeleteSessionById(ctx context.Context,
 		return nil, err
 	}
 
-	if user, ok := session.User.(map[string]any); ok {
-		session.User = *cdata.NewAnyValueMap(user)
+	if session != nil {
+		if user, ok := session.User.(map[string]any); ok {
+			session.User = *cdata.NewAnyValueMap(user)
+		}
 	}
 
 	return session, nil
